@@ -12,7 +12,6 @@ export const FloatingIslandCanvas: React.FC<FloatingIslandCanvasProps> = ({
   revealMode,
 }) => {
   const containerRef = useRef<HTMLDivElement>(null);
-  const [mousePos, setMousePos] = useState({ x: -1000, y: -1000 });
   const [smoothMouse, setSmoothMouse] = useState({ x: -1000, y: -1000 });
   const [tilt, setTilt] = useState({ x: 0, y: 0 });
 
@@ -22,12 +21,10 @@ export const FloatingIslandCanvas: React.FC<FloatingIslandCanvasProps> = ({
     let targetY = window.innerHeight * 0.45;
     let currentX = targetX;
     let currentY = targetY;
-    let isMoving = false;
 
     const handleMouseMove = (e: MouseEvent) => {
       targetX = e.clientX;
       targetY = e.clientY;
-      isMoving = true;
 
       // 3D perspective tilt
       const rectX = (e.clientX / window.innerWidth - 0.5) * 2;
@@ -105,7 +102,7 @@ export const FloatingIslandCanvas: React.FC<FloatingIslandCanvasProps> = ({
         {/* Layer 1: Photorealistic Barren Rock Monolith Base */}
         <div className="absolute inset-0 flex items-center justify-center">
           <img
-            src="/rock-monolith-barren.png"
+            src="./rock-monolith-barren.png"
             alt="Photorealistic Craggy Rock Monolith"
             className="w-full h-full object-contain filter contrast-[1.08] brightness-[0.98] drop-shadow-[0_20px_50px_rgba(0,0,0,0.9)] select-none"
             draggable={false}
@@ -118,7 +115,7 @@ export const FloatingIslandCanvas: React.FC<FloatingIslandCanvasProps> = ({
           style={maskStyle}
         >
           <img
-            src="/rock-monolith-grassy.png"
+            src="./rock-monolith-grassy.png"
             alt="Photorealistic Lush Foliage Monolith"
             className="w-full h-full object-contain filter contrast-[1.12] brightness-[1.02] drop-shadow-[0_20px_50px_rgba(0,255,102,0.15)] select-none"
             draggable={false}
@@ -149,7 +146,7 @@ export const FloatingIslandCanvas: React.FC<FloatingIslandCanvasProps> = ({
                 left: `${15 + (i * 23) % 70}%`,
                 top: `${20 + (i * 37) % 65}%`,
                 animationDuration: `${2.5 + (i % 3)}s`,
-                animationDelay: `${(i * 0.4)}s`,
+                animationDelay: `${i * 0.4}s`,
               }}
             />
           ))}
